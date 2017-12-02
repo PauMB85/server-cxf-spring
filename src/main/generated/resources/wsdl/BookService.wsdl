@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="PaymentProcess" targetNamespace="http://ws.hedasoft.es/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.hedasoft.es/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://ws.hedasoft.es/" schemaLocation="BookService_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="getBook">
+    <wsdl:part name="parameters" element="tns:getBook">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getBookResponse">
+    <wsdl:part name="parameters" element="tns:getBookResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="BookService">
+    <wsdl:operation name="getBook">
+      <wsdl:input name="getBook" message="tns:getBook">
+    </wsdl:input>
+      <wsdl:output name="getBookResponse" message="tns:getBookResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BookServiceServiceSoapBinding" type="tns:BookService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getBook">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getBook">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getBookResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PaymentProcess">
+    <wsdl:port name="BookServicePort" binding="tns:BookServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/BookServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

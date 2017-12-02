@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:cxf="http://cxf.apache.org/core" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <!-- Beans -->
+    <context:component-scan base-package="es.hedasoft"/>
+
+    <!-- REST SERVER -->
+    <jaxrs:server id="bookServiceRest" address="/rest">
+        <jaxrs:providers>
+            <bean class="org.apache.cxf.jaxrs.model.wadl.WadlGenerator"/>
+            <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
+            <bean class="org.apache.cxf.jaxrs.provider.JAXBElementProvider"/>
+        </jaxrs:providers>
+        <jaxrs:serviceBeans>
+            <ref bean="bookServiceBeanRest"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:extensionMappings>
+            <entry key="json" value="application/json"/>
+            <entry key="xml" value="application/xml"/>
+        </jaxrs:extensionMappings>
+    </jaxrs:server>
+    <bean id="bookServiceBeanRest" class="es.hedasoft.ws.impl.BookServiceImpl"/>
+
+    <!-- SOAP SERVER -->
+    <jaxws:server id="bookServiceSoap" serviceClass="es.hedasoft.ws.BookService" address="/soap">
+        <jaxws:serviceBean>
+            <bean class="es.hedasoft.ws.impl.BookServiceImpl"/>
+        </jaxws:serviceBean>
+    </jaxws:server>
+
+    <!-- CXF Message logging -->
+    <cxf:bus>
+        <cxf:features>
+            <cxf:logging/>
+        </cxf:features>
+    </cxf:bus>
+</beans>
