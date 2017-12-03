@@ -3,7 +3,7 @@
 > This project works with *__Apache CXF framework__*. It's an example that create a simple web service. 
 > We build, in the same project, a WS with Soap, Restful and Spring.
 
-![Book Service.png](/Users/PauMB/Desktop/Book Service.png)
+![Book Service.png](https://user-images.githubusercontent.com/7451550/33525613-6cb1a0a6-d833-11e7-90bd-fef513ba6e4f.png)
 
 ### Table of Contents
 1. [Overview](#overview)
