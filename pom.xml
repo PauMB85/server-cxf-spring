@@ -4,7 +4,7 @@
   <groupId>es.hedasoft</groupId>
   <artifactId>server-cxf</artifactId>
   <packaging>war</packaging>
-  <version>1.0.0.0</version>
+  <version>1.0.0.2</version>
   <name>server-cxf Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
