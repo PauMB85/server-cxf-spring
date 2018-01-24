@@ -59,4 +59,17 @@ public class BookServiceImpl implements BookService
         }
         return response;
     }
+
+    @Override
+    public Response putBook(int id, Book book) {
+        Response response;
+
+        if(mapBook.containsKey(id)){
+            mapBook.put(id,book);
+            response = Response.ok().build();
+        }else {
+            response = Response.status(400).build();
+        }
+        return response;
+    }
 }

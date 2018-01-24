@@ -32,4 +32,9 @@ public interface BookService
     @DELETE
     @Path("/{id}")
     public Response deleteBook(@PathParam("id") int id);
+
+    @WebMethod
+    @PUT
+    @Path("/{id}")
+    public Response putBook(@PathParam("id") int id,Book book);
 }
