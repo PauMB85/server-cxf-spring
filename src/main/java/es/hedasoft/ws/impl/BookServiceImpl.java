@@ -46,4 +46,30 @@ public class BookServiceImpl implements BookService
     {
         return mapBook.values();
     }
+
+    @Override
+    public Response deleteBook(int id) {
+        Response response;
+
+        Book book = mapBook.remove(id);
+        if(book == null){
+            response = Response.status(400).build();
+        }else {
+            response = Response.ok().build();
+        }
+        return response;
+    }
+
+    @Override
+    public Response putBook(int id, Book book) {
+        Response response;
+
+        if(mapBook.containsKey(id)){
+            mapBook.put(id,book);
+            response = Response.ok().build();
+        }else {
+            response = Response.status(400).build();
+        }
+        return response;
+    }
 }
